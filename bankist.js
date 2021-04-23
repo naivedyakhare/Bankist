@@ -160,7 +160,9 @@ const compareDate = (date1, date2) => {
   else if(difference > 1 && difference < 7) return `${difference} days ago`;
   else if(difference >= 7 && difference < 14) return `1 Week ago`
   
-  return new Intl.DateTimeFormat(currentAccount.locale).format(date2);  
+  let returnTime = String(new Intl.DateTimeFormat(currentAccount.locale).format(date2));
+  return returnTime.split('/').map(type => type.padStart(2, 0)).join('/');
+  //Above line adds 0 on a single digit date.
 }
 const displayMovement = function([mov, movDate]) {  
   //index is 0 for Movement, 1 for Date
